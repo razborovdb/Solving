@@ -26,7 +26,6 @@ public class InsertLinkedList {
         return head;
 
     }
-
     public static void main(String[] args) {
 
         ListNode<Integer> head = new ListNode<Integer>(1);
@@ -48,4 +47,5 @@ public class InsertLinkedList {
         }
         System.out.println();
     }
+
 }
