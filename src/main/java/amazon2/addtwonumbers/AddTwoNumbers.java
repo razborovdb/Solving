@@ -1,4 +1,4 @@
-package amazon.addtwonumbers;
+package amazon2.addtwonumbers;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
@@ -37,48 +37,57 @@ public class AddTwoNumbers {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode resultTail = null;
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
         ListNode result = null;
-        int left = 0;
+        ListNode resultTail = null;
+        int carry = 0;
         while (l1 != null && l2 != null) {
-            ListNode nextNode = new ListNode((l1.val + l2.val + left) % 10);
-            left = (l1.val + l2.val + left) / 10;
-            if (resultTail == null) {
-                resultTail = nextNode;
-                result = resultTail;
+            ListNode next = new ListNode((l1.val + l2.val + carry) % 10);
+            carry = (l1.val + l2.val + carry) / 10;
+            if (result == null) {
+                result = next;
+                resultTail = result;
             } else {
-                resultTail.next = nextNode;
-                resultTail = resultTail.next;
+                resultTail.next = next;
+                resultTail = next;
             }
             l1 = l1.next;
             l2 = l2.next;
         }
-
         while (l1 != null) {
-            ListNode nextNode = new ListNode((l1.val + left) % 10);
-            left = (l1.val + left) / 10;
-            resultTail.next = nextNode;
-            resultTail = resultTail.next;
+            ListNode next = new ListNode((l1.val + carry) % 10);
+            carry = (l1.val + carry) / 10;
+            if (result == null) {
+                result = next;
+                resultTail = result;
+            } else {
+                resultTail.next = next;
+                resultTail = next;
+            }
             l1 = l1.next;
-
         }
-
         while (l2 != null) {
-            ListNode nextNode = new ListNode((l2.val + left) % 10);
-            left = (l2.val + left) / 10;
-            resultTail.next = nextNode;
-            resultTail = resultTail.next;
-
+            ListNode next = new ListNode((l2.val + carry) % 10);
+            carry = (l2.val + carry) / 10;
+            if (result == null) {
+                result = next;
+                resultTail = result;
+            } else {
+                resultTail.next = next;
+                resultTail = next;
+            }
             l2 = l2.next;
         }
-
-        if (left != 0) {
-            ListNode nextNode = new ListNode(left % 10);
-            resultTail.next = nextNode;
+        if (carry > 0) {
+            ListNode next = new ListNode(carry);
+            resultTail.next = next;
+            resultTail = next;
         }
-
         return result;
-
-
     }
 }
