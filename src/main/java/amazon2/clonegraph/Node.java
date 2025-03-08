@@ -1,4 +1,4 @@
-package amazon.clonegraph;
+package amazon2.clonegraph;
 
 import java.util.ArrayList;
 import java.util.List;

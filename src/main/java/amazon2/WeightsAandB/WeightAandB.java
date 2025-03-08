@@ -1,4 +1,4 @@
-package amazon_practice;
+package amazon2.WeightsAandB;
 
 import java.util.*;
 
